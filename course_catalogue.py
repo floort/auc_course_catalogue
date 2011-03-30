@@ -6,7 +6,7 @@ import re
 
 def pdf_to_txt(filename):
     """Convert a pdf file on disk to text.
-    Needs the pdftotext binary from the cpdf package."""
+    Needs the pdftotext binary from the xpdf package."""
     p = subprocess.Popen(["pdftotext", "-layout", filename, "-"],
         stdout=subprocess.PIPE)
     return p.communicate()[0]
