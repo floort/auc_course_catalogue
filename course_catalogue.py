@@ -12,7 +12,8 @@ def pdf_to_txt(filename):
     return p.communicate()[0]
 
 def parse_course_list(doc):
-    return re.findall(r'^(?P<id>(?:SCI|SSC|HUM|ACC)\S+)\s+(?P<name>\S*)',doc,re.M)
+    return
+    re.findall(r'^(?P<id>(?:SCI|SSC|HUM|ACC)\S+)\s+(?P<name>[^.]*)',doc,re.M)
 
 
 def parse_full(doc):
