@@ -11,12 +11,25 @@ def pdf_to_txt(filename):
         stdout=subprocess.PIPE)
     return p.communicate()[0]
 
+def remove_page_numbers(doc):
+    """Remove the lines containing page numbers from doc"""
+    clean_doc = ""
+    page = 2 # page 1 isn't there
+    for l in doc.split("\n"):
+        if l.strip().isdigit():
+            if int(l.strip()) == page:
+                page += 1
+                continue
+        clean_doc += "\n"+l
+    return clean_doc
+
 def parse_course_list(doc):
-    return
-    re.findall(r'^(?P<id>(?:SCI|SSC|HUM|ACC)\S+)\s+(?P<name>[^.]*)',doc,re.M)
+    return re.findall(r'^(?P<id>(?:SCI|SSC|HUM|ACC)\S+)\s+(?P<name>[^.]*)',doc,re.M)
 
 
 def parse_full(doc):
+    doc = remove_page_numbers(doc)
+    print doc
     courses = parse_course_list(doc)
     return courses
 
