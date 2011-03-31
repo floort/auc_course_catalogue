@@ -24,12 +24,12 @@ def remove_page_numbers(doc):
     return clean_doc
 
 def parse_course_list(doc):
-    return re.findall(r'^(?P<id>(?:SCI|SSC|HUM|ACC)\S+)\s+(?P<name>[^.]*)',doc,re.M)
+    r = r'^\s?(?P<id>(?:SCI|SSC|HUM|ACC)\S+)\s+(?P<name>[^.]*)\.+\s*(?P<page>\d+)$'
+    return re.findall(r, doc,re.M)
 
 
 def parse_full(doc):
     doc = remove_page_numbers(doc)
-    print doc
     courses = parse_course_list(doc)
     return courses
 
