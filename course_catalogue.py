@@ -15,12 +15,12 @@ def remove_page_numbers(doc):
     """Remove the lines containing page numbers from doc"""
     clean_doc = ""
     page = 2 # page 1 isn't there
-    for l in doc.split("\n"):
-        if l.strip().isdigit():
-            if int(l.strip()) == page:
-                page += 1
+    for l in doc.split("\n"): # Read each line
+        if l.strip().isdigit(): # If the line only contains a digit
+            if int(l.strip()) == page: # And it's the number we're looking for
+                page += 1 # Start looking for the next page number
                 continue
-        clean_doc += "\n"+l
+        clean_doc += "\n"+l # Append line without pagenumber to the document
     return clean_doc
 
 def parse_course_list(doc):
